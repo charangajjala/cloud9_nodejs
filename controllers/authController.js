@@ -164,14 +164,12 @@ const sendTokenResponse = async (user, codeStatus, res) => {
   const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: 3600,
   });
-  res
-    .status(codeStatus)
-    .cookie("token", token, { maxAge: 60 * 60 * 1000, httpOnly: true })
-    .json({
-      success: true,
-      role: user.role,
-      id: user.id,
-    });
+  res.status(codeStatus).json({
+    success: true,
+    role: user.role,
+    id: user.id,
+    token,
+  });
 };
 
 // log out
