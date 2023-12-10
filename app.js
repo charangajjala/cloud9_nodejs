@@ -52,7 +52,13 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://dev.dk0u0mxligz4.amplifyapp.com", // specify allowed origin
+    methods: "GET,POST,PUT,DELETE", // specify allowed HTTP methods
+    allowedHeaders: "Content-Type,Authorization", // specify allowed headers
+  })
+);
 
 // ROUTES MIDDLEWARE
 app.get("/", (req, res) => {
