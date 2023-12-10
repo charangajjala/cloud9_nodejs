@@ -34,7 +34,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 // }
 
 exports.isAuthenticated = async (req, res, next) => {
-  const { token } = req.cookies;
+  const token = req.header.authorization;
   console.log("token", token);
   // Make sure token exists
   if (!token) {
